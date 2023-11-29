@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .main{
+            width: 1200px;
+            height: 800px;
+            margin: 0 auto;
+            border: 1px solid #000;
+        }
+
+        .title{
+            font-size: 30px;
+            text-align: center;
+        }
+
+        .data{
+            width: 1200px;
+            text-align: center;
+        }
+        .data div{
+            margin-top: 30px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="title">添加图书</div>
+        <div class="data">
+            <form action="http://127.0.0.1:8888/add" method="post">
+                <div>书名： <input type="text" placeholder="请输入书名" name="name"></div>
+                <div>价格： <input type="text" placeholder="请输入价格" name="price"></div>
+                <div>简介： <input type="text" placeholder="请输入简介" name="summary"></div>
+                <div>库存： <input type="text" placeholder="请输入库存" name="quantity"></div>
+                <div> <input type="submit" value="添加"></div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

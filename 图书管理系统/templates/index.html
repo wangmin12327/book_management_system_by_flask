@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .main{
+            width: 1200px;
+            height: 800px;
+            margin: 50px auto;
+        }
+        .op{
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+        }
+        a{
+            text-decoration: none;
+        }
+        .title{
+            font-size: 30px;
+            text-align: center;
+            width: 1200px;
+            height: 80px;
+            line-height: 80px;
+        }
+        /* .content table{
+            width: 1200px;
+            text-align: center;
+            border-collapse: collapse;
+
+        }
+        tr, th, td{
+            border: 1px solid #000;
+        }
+
+        .cell span{
+            color: blue;
+        } */
+        .content .table{
+            /* width: 1200px; */
+            text-align: center;
+
+        }
+        .tr{
+            width: 1200px;
+            height: 50px;
+            line-height: 50px;
+            display: flex;
+            justify-content: space-between;
+
+        }
+        .th, .td{
+            /* width: 200px; */
+            flex: 1;
+            text-align: center;
+            border: 1px solid #000;
+        }
+        .tr .td:nth-child(4), .tr .th:nth-child(4){
+            flex: 2;
+        }
+
+
+
+    </style>
+    <script src="static/js/jquery-1.8.3.min.js"></script>
+
+    <script>
+        $(function(){
+            $.get("http://127.0.0.1:8888/list",function(data){
+
+                // div 展示数据
+                setDivContent(data)
+            });
+        });
+
+        // 查找函数
+        function search(){
+            var wd = $(".wd").val()
+            $.get("http://127.0.0.1:8888/search",{"wd": wd},function(data){
+
+                // div 展示数据
+                setDivContent(data)
+            },"json");
+        }
+
+        function setDivContent(data){
+            html_str = ""
+            html_str += "<div class='tr'>"
+            html_str += "    <div class='th'>编号</div>"
+            html_str += "    <div class='th'>书名</div>"
+            html_str += "    <div class='th'>价格</div>"
+            html_str += "    <div class='th'>简介</div>"
+            html_str += "    <div class='th'>库存</div>"
+            html_str += "    <div class='th'>操作</div>"
+            html_str += "</div>"
+
+            for(var i =0;i<data.length;i++){
+                var obj = data[i]
+                html_str += "<div class='tr'>"
+                html_str += "    <div class='td'> " + obj.bid + " </div>"
+                html_str += "    <div class='td'> " + obj.name + " </div>"
+                html_str += "    <div class='td'> " + obj.price + " </div>"
+                html_str += "    <div class='td'> " + obj.summary + " </div>"
+                html_str += "    <div class='td'> " + obj.quantity + " </div>"
+                html_str += "    <div class='td'><a href='change.html?bid=" + obj.bid + "'>编辑</a> | <a href='http://127.0.0.1:8888/delete/" + obj.bid + "'>删除</a></div>"
+                html_str += "</div>"
+            }
+            $(".data").html(html_str)
+        }
+
+    </script>
+</head>
+<body>
+    <div class="main">
+
+        <div class="title">图书管理系统</div>
+
+        <div class="op">
+            <div class="add"><a href="add.html">添加图书</a></div>
+            <div class="search">
+                <input type="text" class="wd" placeholder="请输入搜索内容">
+                <input type="button" value="搜索" onclick="search()">
+            </div>
+        </div>
+
+        <!-- <div class="content">
+            <table class="data">
+
+            </table>
+        </div> -->
+
+        <div class="content">
+            <div class="data">
+                <!-- <div class='tr'>
+                    <div class='th'>编号</div>
+                    <div class='th'>书名</div>
+                    <div class='th'>价格</div>
+                    <div class='th'>简介</div>
+                    <div class='th'>库存</div>
+                    <div class='th'>操作</div>
+                </div>
+                <div class='tr'>
+                    <div class='td'>1</div>
+                    <div class='td'>Python</div>
+                    <div class='td'>99</div>
+                    <div class='td'>Python开发</div>
+                    <div class='td'>99</div>
+                    <div class='td'><a href='/change/" + obj.bid + "'>编辑</a> | <a href='/delete/" + obj.bid + "'>删除</a></div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
