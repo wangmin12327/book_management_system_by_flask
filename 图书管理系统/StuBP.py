@@ -6,7 +6,7 @@ from pymysql import *
 # 1. 蓝图的声明
 stuBP = Blueprint(name="stu", import_name=__name__)
 # 连接数据库
-db_connect = Connect(host="127.0.0.1", port=3306, user="root", password="123456", database="sms", charset="utf8")
+db_connect = Connect(host="127.0.0.1", port=3306, user="root", password="123456", database="bms", charset="utf8")
 
 
 # 通过蓝图来管理数据接口
@@ -22,7 +22,7 @@ def list():
     # 查询数据库得到所有的数据展示
     # 获取游标对象
     cursor = db_connect.cursor()
-    sql_str = ''' select * from student; '''
+    sql_str = ''' select * from book; '''
     cursor.execute(sql_str)
     data = cursor.fetchall()
     datas = []
@@ -52,7 +52,7 @@ def add():
         summary = request.values.get("summary")
         quantity = request.values.get("quantity")
 
-        sql_str = ''' insert into student (bid, name, price, summary, quantity) values(%s,%s,%s,%s,%s) '''
+        sql_str = ''' insert into book (bid, name, price, summary, quantity) values(%s,%s,%s,%s,%s) '''
         cursor = db_connect.cursor()
         cursor.execute(sql_str, [bid, name, price, summary, quantity])
         # 提交更改操作，不提交不生效
@@ -74,7 +74,7 @@ def change(bid):
         summary = request.values.get("summary")
         quantity = request.values.get("quantity")
 
-        sql_str = ''' update student set name=%s, price=%s, summary=%s, quantity=%s where bid = %s '''
+        sql_str = ''' update book set name=%s, price=%s, summary=%s, quantity=%s where bid = %s '''
         cursor = db_connect.cursor()
         cursor.execute(sql_str, [bid, name, price, summary, quantity])
         # 提交更改操作，不提交不生效
@@ -87,7 +87,7 @@ def change(bid):
 @stuBP.route("/changeData/<bid>")
 def changeData(bid):
     cursor = db_connect.cursor()
-    sql = '''select * from student where bid = ''' + bid
+    sql = '''select * from book where bid = ''' + bid
     cursor.execute(sql)
     item = cursor.fetchone()
     data = {}
@@ -105,7 +105,7 @@ def changeData(bid):
 @stuBP.route("/delete/<bid>")
 def delete(bid):
     curosr = db_connect.cursor()
-    sql = ''' delete from student where bid = %s '''
+    sql = ''' delete from book where bid = %s '''
     curosr.execute(sql, [bid])
     db_connect.commit()
     curosr.close()
