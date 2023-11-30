@@ -21,4 +21,7 @@ app.run(debug=True,port=8888)
 # 创建数据表（字段根据需求去创建）
 # create table book(bid int primary key auto_increment, name char(50), price float, summary varchar(50), quantity int);
 # 插入数据
-# insert into book values("python", 23, "", 12),(5,"Alice",26,"female");
+# insert into book values(1,"Python开发",69,"Python语言开发从入门到精通",99);
+# insert into book values(2,"HTML开发",59,"Python语言开发从入门到精通",99);
+# insert into book values(3,"CSS开发",59,"Python语言开发从入门到精通",99);
+# insert into book values(4,"JavaScript开发",59,"Python语言开发从入门到精通",99);
