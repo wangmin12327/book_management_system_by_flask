@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .main{
+            width: 1200px;
+            height: 800px;
+            margin: 0 auto;
+            border: 1px solid #000;
+        }
+
+        .title{
+            font-size: 30px;
+            text-align: center;
+        }
+
+        .data{
+            width: 1200px;
+            text-align: center;
+        }
+        .data div{
+            margin-top: 30px;
+        }
+        .name{}
+        .price{}
+        .summary{}
+        .quantity{}
+    </style>
+
+    <script src="../static/js/jquery-1.8.3.min.js"></script>
+    <script>
+        // 通过入口事件，请求回显示数据，并展示到修改页面中
+        $(function(){
+            var url = document.location.href
+            //substring() 方法用于提取字符串中介于两个指定下标之间的字符; 方法返回的子串包括 开始 处的字符，但不包括 结束 处的字符。
+            //lastIndexOf() 方法可返回一个指定的字符串值最后出现的位置
+            var bid = url.substring(url.lastIndexOf("/")+1)
+            $.get("/changeData/"+bid,function(data){
+                $(".name").val(data.name)  //$(标签名).val(值)，设置所有匹配标签名称或选择器的属性值。
+                $(".price").val(data.price)
+                $(".summary").val(data.summary)
+                $(".quantity").val(data.quantity)
+                // 拼接提交地址，并设置到表单的 action 属性中
+                var url = "/change/"+bid
+                $("form").prop({"action":url})     //$("选择器或者标签名").prop({"属性名":属性值})用于设置属性值时，为匹配元素集合设置一个或多个属性/值对。
+            },"json");  //以 JSON 运行响应，并以 JavaScript 对象返回
+        });
+    </script>
+</head>
+<body>
+    <div class="main">
+        <div class="title">修改图书信息</div>
+        <div class="data">
+            <!-- 提交修改数据 -->
+            <form action="" method="post">
+                <div>书名： <input type="text" class="name" name="name"></div>
+                <div>价格： <input type="text" class="price" name="price"></div>
+                <div>简介： <input type="text" class="summary" name="summary"></div>
+                <div>库存： <input type="text" class="quantity" name="quantity"></div>
+                <div> <input type="submit" value="修改"></div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

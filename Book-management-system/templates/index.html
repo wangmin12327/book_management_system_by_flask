@@ -25,23 +25,26 @@
             height: 80px;
             line-height: 80px;
         }
+<<<<<<< HEAD:图书管理系统/templates/index.html
         .content table{
+=======
+        .content{
+>>>>>>> 8e9cdc492a0dd5250c2ce7f49d01e525d7ad6db2:Book-management-system/templates/index.html
             width: 1200px;
             text-align: center;
             border-collapse: collapse;
 
         }
-        tr, th, td{
-            border: 1px solid #000;
-        }
-
         .cell span{
             color: blue;
+<<<<<<< HEAD:图书管理系统/templates/index.html
         }
         .content{
             /* width: 1200px; */
             text-align: center;
 
+=======
+>>>>>>> 8e9cdc492a0dd5250c2ce7f49d01e525d7ad6db2:Book-management-system/templates/index.html
         }
         .tr{
             width: 1200px;
@@ -52,24 +55,41 @@
 
         }
         .th, .td{
-            /* width: 200px; */
             flex: 1;
             text-align: center;
+        }
+        .tr .th:nth-child(2), .tr .th:nth-child(3), .tr .th:nth-child(4), .tr .th:nth-child(5), .tr .th:nth-child(6){
+            border-left: 0px;
+        }
+        .tr .td:nth-child(2), .tr .td:nth-child(3), .tr .td:nth-child(4), .tr .td:nth-child(5), .tr .td:nth-child(6){
+            border-left: 0px;
+        }
+        .tr .td{
+            border-top: 0px;
         }
         .tr .td:nth-child(4), .tr .th:nth-child(4){
             flex: 2;
         }
+        .data{
 
-
-
+        }
     </style>
     <!-- 引入 jquery  -->
+<<<<<<< HEAD:图书管理系统/templates/index.html
     <script src="static/js/jquery-1.8.3.min.js"></script>
+=======
+    <script src="../static/js/jquery-1.8.3.min.js"></script>
+>>>>>>> 8e9cdc492a0dd5250c2ce7f49d01e525d7ad6db2:Book-management-system/templates/index.html
 
     <script>
         // 在入口事件中请求页面显示的数据
         $(function(){
+<<<<<<< HEAD:图书管理系统/templates/index.html
             $.get("https://management-api.hogwarts.ceshiren.com/book/list",function(data){
+=======
+            // $.get() 方法: 使用 HTTP GET 请求从服务器加载的json数据 data
+            $.get("http://127.0.0.1:8888/list",function(data){
+>>>>>>> 8e9cdc492a0dd5250c2ce7f49d01e525d7ad6db2:Book-management-system/templates/index.html
 
                 // div 展示数据
                 setDivContent(data)
@@ -81,7 +101,11 @@
             // 获取查询关键词
             var wd = $(".wd").val()
             // 发起请求获取搜索数据
+<<<<<<< HEAD:图书管理系统/templates/index.html
             $.get("https://management-api.hogwarts.ceshiren.com/book/search",{"wd": wd},function(data){
+=======
+            $.get("http://127.0.0.1:8888/search",{"wd": wd},function(data){
+>>>>>>> 8e9cdc492a0dd5250c2ce7f49d01e525d7ad6db2:Book-management-system/templates/index.html
 
                 // div 展示数据
                 setDivContent(data)
@@ -102,18 +126,26 @@
             html_str += "</div>"
             // 遍历数据，拼接数据行表格中的行
             for(var i =0;i<data.length;i++){
-                var obj = data[i]
+                var obj = data[i]  //数组
                 html_str += "<div class='tr'>"
                 html_str += "    <div class='td'> " + obj.bid + " </div>"
                 html_str += "    <div class='td'> " + obj.name + " </div>"
                 html_str += "    <div class='td'> " + obj.price + " </div>"
                 html_str += "    <div class='td'> " + obj.summary + " </div>"
                 html_str += "    <div class='td'> " + obj.quantity + " </div>"
+<<<<<<< HEAD:图书管理系统/templates/index.html
                 html_str += "    <div class='td'><a href='change.html?sid=" + obj.bid + "'>编辑</a> | <a href='https://management-api.hogwarts.ceshiren.com/book/delete/" + obj.bid + "'>删除</a></div>"
                 html_str += "</div>"
             }
             // 将数据添加到页面中
             $(".data").html(html_str)
+=======
+                html_str += "    <div class='td'><a href='/change/" + obj.bid + "'>修改</a> | <a href='/delete/" + obj.bid + "'>删除</a></div>"
+                html_str += "</div>"
+            }
+            // 将数据添加到页面中;   jQuery html() 方法: 当该方法用于设置内容时，重写所有匹配元素的内容
+            $(".data").html(html_str)    //.data 是html中的类选择器标签名，html_str是需要重写的匹配元素内容的字符串
+>>>>>>> 8e9cdc492a0dd5250c2ce7f49d01e525d7ad6db2:Book-management-system/templates/index.html
         }
 
     </script>
@@ -126,7 +158,11 @@
         <!-- 功能条 -->
         <div class="op">
             <!-- 添加按钮 -->
+<<<<<<< HEAD:图书管理系统/templates/index.html
             <div class="add"><a href="add.html">添加图书</a></div>
+=======
+            <div class="add"><a href="/add">添加图书</a></div>
+>>>>>>> 8e9cdc492a0dd5250c2ce7f49d01e525d7ad6db2:Book-management-system/templates/index.html
             <!-- 搜索框 -->
             <div class="search">
                 <input type="text" class="wd" placeholder="请输入搜索内容">
@@ -134,12 +170,16 @@
             </div>
         </div>
 
+<<<<<<< HEAD:图书管理系统/templates/index.html
         <!-- <div class="content">
             <table class="data">
 
             </table>
         </div> -->
         <!-- 内容展示区域 -->
+=======
+         <!--内容展示区域-->
+>>>>>>> 8e9cdc492a0dd5250c2ce7f49d01e525d7ad6db2:Book-management-system/templates/index.html
         <div class="content">
             <div class="data">
                 <div class='tr'>
