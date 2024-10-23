@@ -1,0 +1,1 @@
+[1m[31mERROR   [0m root:test_case_02.py:105 TypeError: 输入的数据a、b数据类型不合法

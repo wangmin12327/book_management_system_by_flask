@@ -1,0 +1,1 @@
+[31m[1mERROR   [0m root:test_case_04.py:71 ZeroDivisionError: 除数不能为0

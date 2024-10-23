@@ -1,0 +1,2 @@
+[32mINFO    [0m root:test_case_01.py:65 这是test_case_01测试用例
+[32mINFO    [0m root:test_case_01.py:66 断言 assert caculator.add() == expected
